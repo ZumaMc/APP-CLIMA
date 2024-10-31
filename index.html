@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Clima</title>
+</head>
+<body>
+    <h1>Consulta el clima</h1>
+    
+    <form action="/get_temperature" method="post">
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" name="ciudad" required>
+        <button type="submit">Consultar temperatura</button>
+    </form>
+
+    <form action="/set_units" method="post">
+        <label for="unidad">Selecciona la unidad de medida:</label>
+        <select name="unidad">
+            <option value="metric">Métrico (Celsius)</option>
+            <option value="imperial">Imperial (Fahrenheit)</option>
+        </select>
+        <button type="submit">Cambiar unidad</button>
+    </form>
+
+    {% if ciudad %}
+        <h2>Clima en {{ ciudad }}</h2>
+        <p>Temperatura actual: {{ temp }}°</p>
+        <p>Temperatura mínima: {{ temp_min }}°</p>
+        <p>Temperatura máxima: {{ temp_max }}°</p>
+    {% endif %}
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>
